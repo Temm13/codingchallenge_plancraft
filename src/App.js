@@ -1,24 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from "react";
+import { render } from "react-dom";
+import SortableTree from "react-sortable-tree";
+import 'react-sortable-tree/style.css';
 
 function App() {
+  const [treeData, newState] = useReducer((state, action) => {
+    if(action.body.length === 1) {
+      state = action.body;
+    }
+    return state;
+  }, [
+    {
+      title: 'Category 1',
+      expanded: true,
+      children: [
+        {
+          title: "Category 1.1",
+          expanded: true,
+          children: [
+            {
+               title: "Item Group 1",
+               expanded: true,
+               children: [
+                 {
+                   title: "Item 1",
+                 },
+                 {
+                   title: "Item 2",
+                 }
+               ]
+            },
+            {
+              title: "Item 3",
+            }
+          ]
+        },
+        {
+          title: "Category 1.2",
+          expanded: true,
+          children: [
+             {
+               title: "Item 4",
+             },
+             {
+               title: "Item 5",
+             },
+          ]
+        }
+      ]
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: '100vh' }}>
+      <SortableTree
+        treeData={treeData}
+        onChange={treeData => newState({ body: treeData })}
+      />
     </div>
   );
 }

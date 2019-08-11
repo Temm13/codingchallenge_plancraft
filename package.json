@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@atlaskit/tree": "^6.0.6",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.0"
+    "react-scripts": "3.1.0",
+    "react-sortable-tree": "^2.6.2"
   },
   "scripts": {
     "start": "react-scripts start",
